@@ -1,0 +1,42 @@
+import Layout from '@/components/layout';
+//import Model from '@/components/model';
+import Head from 'next/head';
+
+import { lazy, Suspense } from 'react'
+import { Canvas, } from '@react-three/fiber'
+import { FirstPersonControls, OrbitControls } from '@react-three/drei';
+import { Box, Heading, Text, Link } from '@chakra-ui/react';
+
+const Model = lazy(() => import("@/components/model"));
+
+export default function Home() {
+  return (
+    <>
+      <Head>
+        <title>chiayolin.org</title>
+        <meta name="description" content="Chiayo Lin's Homepage on the Web" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Layout>
+        <Box h='20vh' borderRadius='3xl'>
+          <Canvas>
+        <Model />
+          </Canvas>
+        </Box>
+        <Heading size='lg' fontWeight='medium'>Chiayo Lin</Heading>
+        <Text fontWeight='thin'>Software Apprentice</Text>
+        <Text textIndent='1.5rem' mt='1rem'>
+          I graduated from the <Link href='/'>
+          University of Maryland, College Park</Link>
+          with a B.S. degree in Computer Science and a minor in Statistics.
+        </Text>
+        <Text mt='1rem'>
+          Hey there! My name is Chiayo Lin. I graduated from the University of
+          Maryland, College Park with a B.S. Degree in Computer Science and a
+          Statistics Minor in Dec 2022. I'm currently looking for oppurtunities
+        </Text>
+      </Layout>
+    </>
+  )
+}
