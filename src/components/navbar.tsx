@@ -11,6 +11,7 @@ import {
   useColorModeValue,
   Container,
   Box,
+  ButtonGroup,
 } from "@chakra-ui/react";
 
 const Navbar: FC = () => {
@@ -45,13 +46,21 @@ const Navbar: FC = () => {
         chiayolin<Box as='span' fontWeight='normal'>.org</Box>
       </Heading>
       <Spacer />
-      <Button
-        size='xs'
-        colorScheme={colorMode === 'light' ? 'purple' : 'orange'}
-        onClick={toggleColorMode}
-      >
-        {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-      </Button>
+      <ButtonGroup>
+        <Button
+          size='xs'
+          variant='outline'
+        >
+          Gustbook
+        </Button>
+        <Button
+          size='xs'
+          colorScheme={colorMode === 'light' ? 'purple' : 'orange'}
+          onClick={toggleColorMode}
+        >
+          {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+        </Button>
+      </ButtonGroup>
     </Container>
     </Flex>
   );
