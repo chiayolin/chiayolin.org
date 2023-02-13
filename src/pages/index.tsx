@@ -1,6 +1,6 @@
 import moment from 'moment';
 import NextLink from 'next/link';
-import { getSortedPostMeta } from '@/lib/weblog';
+import { getSortedPostMeta, PostMeta } from '@/lib/weblog';
 import Layout from '@/components/layout';
 import { Hr, Paragraph } from '@/components/prose';
 
@@ -20,21 +20,16 @@ import {
   IoLogoGithub,
   IoLogoLinkedin,
 } from 'react-icons/io5';
+import { ExternalLinkIcon } from '@chakra-ui/icons';
 
 export async function getStaticProps() {
   const postMeta = await getSortedPostMeta();
 
   return {
     props: {
-      postMeta
-    }
+      postMeta,
+    },
   };
-}
-
-interface PostMeta {
-  postId: string,
-  title: string,
-  date: string,
 }
 
 export default function Home({ postMeta }: {postMeta: PostMeta[]}) {
@@ -68,13 +63,19 @@ export default function Home({ postMeta }: {postMeta: PostMeta[]}) {
           <Flex alignItems='center'>
             <IoLogoLinkedin />
             <Text ml='1'>
-              LinkedIn: <Link href=''>/in/chiayolin</Link>
+              LinkedIn:{' '}
+              <Link isExternal href='https://www.linkedin.com/in/chiayolin/'>
+                /in/chiayolin <ExternalLinkIcon />
+              </Link>
             </Text>
           </Flex>
           <Flex alignItems='center'>
             <IoLogoGithub />
             <Text ml='1'>
-              GitHub: <Link href=''>@chiayolin</Link>
+              GitHub:{' '}
+              <Link isExternal href='https://github.com/chiayolin'>
+              @chiayolin <ExternalLinkIcon />
+              </Link>
             </Text>
           </Flex>
         </VStack>
@@ -103,20 +104,31 @@ export default function Home({ postMeta }: {postMeta: PostMeta[]}) {
       <Heading fontFamily='mono' mb='5' size='md'>
         ~/*.txt
       </Heading>
-      <VStack alignItems='start'>
-        {Object.values(postMeta).map(({postId, title, date}) => (
-          <Box key={postId}>
-            <Text>
-              <Link as={NextLink} href={`/weblog/${postId}`}>
-                {title}
-              </Link>
-            </Text>
-            <Text fontFamily='mono' fontSize='xs' colorScheme='gray'>
-              {moment(date).format('MMM DD, YYYY')}
-            </Text>
-          </Box>
-        ))}
+      <VStack alignItems='start' mb='5'>
+        {Object
+          .values(postMeta)
+          .slice(0, 3).map(({postId, title, date}) => (
+            <Box key={postId}>
+              <Text>
+                <Link as={NextLink} href={`/weblog/${postId}`}>
+                  {title}
+                </Link>
+              </Text>
+              <Text fontFamily='mono' fontSize='xs' colorScheme='gray'>
+                {moment(date).format('MMM DD, YYYY')}
+              </Text>
+            </Box>
+          ))}
       </VStack>
+      <Paragraph>
+        <Link
+          as={NextLink}
+          mb='5'
+          href='/weblog'
+        >
+         View all posts
+        </Link>
+      </Paragraph>
     </Layout>
   )
 }

@@ -5,6 +5,12 @@ import fs from 'fs';
 
 const postDir = path.join(process.cwd(), '/posts');
 
+export interface PostMeta {
+  postId: string,
+  title: string,
+  date: string,
+}
+
 export function getPostIds() {
   const filenames = fs
     .readdirSync(postDir)

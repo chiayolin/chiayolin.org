@@ -67,6 +67,7 @@ export default function Navbar() {
         <Button
           size='xs'
           variant='ghost'
+          onClick={() => router.push('/weblog')}
         >
           weblog
         </Button>
