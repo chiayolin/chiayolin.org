@@ -86,7 +86,7 @@ export default function Home({ postMeta }: {postMeta: PostMeta[]}) {
       </Heading>
 
       <Paragraph lineHeight='6'>
-        I'm a SWE based in the Washington DC area. I'm currently open to
+        I&aposm a SWE based in the Washington DC area. I&aposm currently open to
         software engineering opportunities across Continental US.
       </Paragraph>
 
