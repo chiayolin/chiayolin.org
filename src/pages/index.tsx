@@ -72,7 +72,7 @@ export default function Home({ postMeta }: {postMeta: PostMeta[]}) {
       </Flex>
       <Hr />
 
-      <Heading fontFamily='mono' mb='5' size='md' fontWeight='bold'>
+      <Heading fontFamily='mono' mb='5' size='md'>
         whoami
       </Heading>
 
@@ -91,7 +91,7 @@ export default function Home({ postMeta }: {postMeta: PostMeta[]}) {
       </Paragraph>
       <Hr />
 
-      <Heading fontFamily='mono' mb='5' size='md' fontWeight='bold'>
+      <Heading fontFamily='mono' mb='5' size='md'>
         ~/*.txt
       </Heading>
       <VStack alignItems='start'>

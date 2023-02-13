@@ -61,17 +61,17 @@ export default function Navbar() {
           size='xs'
           variant='ghost'
         >
-          about
+          readme
         </Button>
         <Button
           size='xs'
           variant='ghost'
         >
-          blog
+          weblog
         </Button>
+        <Spacer />
         <Button
           size='xs'
-          variant='ghost'
           colorScheme={colorMode === 'light' ? 'purple' : 'orange'}
           onClick={toggleColorMode}
         >
