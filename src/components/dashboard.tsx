@@ -18,6 +18,7 @@ const Dashboard: FC = () => {
     <Box
       pl='2'
       w='10rem'
+      mt='3rem'
       ml='-12rem'
       position='fixed'
       textAlign='left'
