@@ -1,125 +1,114 @@
+import moment from 'moment';
+import NextLink from 'next/link';
+import { getSortedPostMeta } from '@/lib/blog';
 import Layout from '@/components/layout';
-//import Model from '@/components/model';
-import Head from 'next/head';
+import { Hr, Paragraph } from '@/components/prose';
+import { IoLockClosed, IoLogoGithub, IoLogoLinkedin, IoMail } from "react-icons/io5";
+import {
+  Box,
+  Text,
+  Link,
+  VStack,
+  Heading,
+  Image,
+  Flex,
+} from '@chakra-ui/react';
 
-import { lazy, Suspense } from 'react'
-import { Canvas, } from '@react-three/fiber'
-import { FirstPersonControls, OrbitControls } from '@react-three/drei';
-import { Box, Heading, Text, Link, Divider, StackDivider, Card, CardBody, VStack, CardHeader, CardFooter, Code, Button, ButtonGroup, Flex, Spacer } from '@chakra-ui/react';
+export async function getStaticProps() {
+  const postMeta = await getSortedPostMeta();
 
-const Model = lazy(() => import("@/components/model"));
+  return {
+    props: {
+      postMeta
+    }
+  };
+}
 
-export default function Home() {
+interface PostMeta {
+  postId: string,
+  title: string,
+  date: string,
+}
+
+export default function Home({ postMeta }: {postMeta: PostMeta[]}) {
   return (
-    <>
-      <Head>
-        <title>chiayolin.org</title>
-        <meta name="description" content="Chiayo Lin's Homepage on the Web" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Layout>
-        <Box h='0' borderRadius='3xl'>
-          <Canvas>
-        <Model />
-          </Canvas>
-        </Box>
-        <Heading size='md' fontWeight='medium'>
-          Chiayo Lin
-        </Heading>
-        <Text fontWeight='thin'>Software Engineer, he/him/他.</Text>
+    <Layout>
+      <Box overflow='clip' maxH='60' borderRadius='lg' mb='5'>
+        <Image src='/cover.jpg' />
+      </Box>
 
-        <Box mt='4'>
-          <Box>
-            <Text fontSize=''>
-              PGP: <Link>57b0-820a-ec30-e858</Link>
+      <Heading size='md' fontWeight='medium'>
+        Chiayo Lin
+      </Heading>
+      <Text mb='5' fontWeight='thin'>Software Engineer, he/him/他.</Text>
+      <Flex mb='5' wrap='wrap' alignItems='center' rowGap='5' fontSize='sm'>
+        <VStack direction='column' align='stretch' spacing='1'>
+          <Flex alignItems='center'>
+            <IoLockClosed />
+            <Text ml='1'>
+              PGP: <Link>57B0-820A-EC30-E858</Link>
             </Text>
-          </Box>
-          <Box>
-            <Link fontSize='' href=''>Email</Link>
-            {' • '}
-            <Link fontSize='' href=''>Resume</Link>
-            {' • '}
-            <Link fontSize='' href=''>LinkedIn</Link>
-            {' • '}
-            <Link fontSize='' href=''>GitHub</Link>
-          </Box>
-        </Box>
+          </Flex>
+          <Flex alignItems='center'>
+            <IoMail />
+            <Text ml='1'>
+              Email: me [at] chiayolin.org
+            </Text>
+          </Flex>
+          <Flex alignItems='center'>
+            <IoLogoLinkedin />
+            <Text ml='1'>
+              LinkedIn: <Link href=''>/in/chiayolin</Link>
+            </Text>
+          </Flex>
+          <Flex alignItems='center'>
+            <IoLogoGithub />
+            <Text ml='1'>
+              GitHub: <Link href=''>@chiayolin</Link>
+            </Text>
+          </Flex>
 
-
-        <Heading mt='8' size='md' fontWeight='medium'>
-         About
-        </Heading>
-        <Text mt='1rem'>
-          I'm a SWE based in the Washington DC area. I'm currently open to
-          software engineering opportunities across Continental US.
-        </Text>
-        <Text mt='1rem' mb='1rem'>
-          I graduated from the University of Maryland, College Park with a B.S.
-          degree in Computer Science and a minor in Statistics.
-        </Text>
-
-        <Link mt='1rem' href=''>Read more...</Link>
-
-        {/*
-        <Text mt='1rem'>
-          I was born in Taipei, Taiwan and moved to Ho Chi Minh City
-          (HCMC), Vietnam when I was a kid with my family. During my time in 
-          HCMC, I attended an <Link href='https://www.ssis.edu.vn'>
-          international school</Link>, where I was exposed to an array of
-          diverse cultures.
-        </Text>
-
-        <Heading mt='8' size='sm' fontWeight='medium'>
-          Aside: How I Do My Computing
-          </Heading>
-        <Text mt='1rem'>
-          All my machines run POSIX-compatible operating systems. Most of my
-          programming work is done in a terminal emulator (kitty) and Vim
-          (NeoVim), for productivity's sake. As for keyboards, for those
-          interested, I primarily use my laptop's keybaord, and a HHKB when I'm
-          at home.
-        </Text>
-        <Text mt='1rem'>
-          I'm proficient in C, Python, React/TypeScript, and Lisp.
-        </Text>
-        */}
-        <Heading mt='8' size='md' fontWeight='medium'>
-         Posts
-        </Heading>
-        <VStack mt='4' alignItems='start'>
-          <Box>
-            <Text >
-            <Link href=''>
-              Writing Your Own Lisp Compiler
-            </Link>
-            </Text>
-            <Text fontSize='sm' fontWeight='normal' colorScheme='gray'>
-              Feb 10, 2023
-            </Text>
-          </Box>
-          <Box>
-            <Text >
-            <Link href=''>
-            What Is This Site Really About?
-            </Link>
-            </Text>
-            <Text fontSize='sm' fontWeight='normal' colorScheme='gray'>
-              Dec 01, 2020
-            </Text>
-          </Box>
-          <Box>
-            <Text >
-            <Link href=''>
-            A Note on Programming Languages
-            </Link>
-            </Text>
-            <Text fontSize='sm' fontWeight='normal' colorScheme='gray'>
-              Aug 23, 2019
-            </Text>
-          </Box>
         </VStack>
-      </Layout>
-    </>
+      </Flex>
+      <Hr />
+
+      <Heading fontFamily='mono' mb='5' size='md' fontWeight='bold'>
+        whoami
+      </Heading>
+
+      <Paragraph lineHeight='6'>
+        I'm a SWE based in the Washington DC area. I'm currently open to
+        software engineering opportunities across Continental US.
+      </Paragraph>
+
+      <Paragraph lineHeight='6'>
+        I recently graduated from the University of Maryland, College Park with a B.S.
+        degree in Computer Science and a minor in Statistics.<br/>
+      </Paragraph>
+
+      <Paragraph>
+        <Link mb='5' href=''>Read more...</Link>
+      </Paragraph>
+      <Hr />
+
+      <Heading fontFamily='mono' mb='5' size='md' fontWeight='bold'>
+        ~/*.txt
+      </Heading>
+      <VStack alignItems='start'>
+        {Object.values(postMeta).map(({postId, title, date}) => (
+          <Box key={postId}>
+            <Text>
+              <Link as={NextLink} href={`/blog/${postId}`}>
+                {title}
+              </Link>
+            </Text>
+            <Text fontFamily='mono' fontSize='xs' colorScheme='gray'>
+              {moment(date).format('MMM DD, YYYY')}
+            </Text>
+          </Box>
+        ))}
+      </VStack>
+    </Layout>
   )
 }
+
