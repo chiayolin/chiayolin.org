@@ -67,9 +67,10 @@ function BaseNav({ children, ...rest}: NavProps) {
 interface MobileDrawerProps {
   isOpen: boolean
   onClose: () => void
+  router: NextRouter
 }
 
-function MobileDrawer({ onClose, isOpen }: MobileDrawerProps) {
+function MobileDrawer({ onClose, isOpen, router }: MobileDrawerProps) {
   return (
     <Drawer
       {...{onClose, isOpen}}
@@ -88,17 +89,17 @@ function MobileDrawer({ onClose, isOpen }: MobileDrawerProps) {
               mt='2'
               href='/'
               fontSize='md'
-              as={NextLink}
               fontWeight='black'
               letterSpacing='tight'
+              onClick={() => router.push('/')}
             >
               chiayolin<Box as='span' fontWeight='normal'>.org</Box>
             </Heading>
           </DrawerHeader>
           <DrawerBody>
             <VStack  fontSize='3xl'>
-              <Box as={NextLink} href='/readme'>readme</Box>
-              <Box as={NextLink} href='/weblog'>weblog</Box>
+              <Box onClick={() => router.push('/readme')}>readme</Box>
+              <Box onClick={() => router.push('/weblog')}>weblog</Box>
             </VStack>
           </DrawerBody>
         </DrawerContent>
