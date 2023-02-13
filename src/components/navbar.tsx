@@ -24,14 +24,14 @@ export default function Navbar() {
   const router = useRouter();
 
   return (
-    <Box pt={{base: '20', sm: '16'}}>
+    <Box pt={{base: '20', md: '16'}}>
       <DesktopNav
         {...{router, colorMode}}
-        display={{base: 'none', sm: 'flex'}}
+        display={{base: 'none', md: 'flex'}}
       />
       <MobileNav
         {...{router, colorMode}}
-        display={{base: 'flex', sm: 'none'}}
+        display={{base: 'flex', md: 'none'}}
       />
     </Box>
   );
