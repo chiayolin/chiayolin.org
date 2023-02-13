@@ -69,6 +69,12 @@ interface MobileDrawerProps {
 }
 
 function MobileDrawer({ onClose, isOpen, router }: MobileDrawerProps) {
+  const drawerLinkHandler = (path: string) => {
+    return () => {
+      router?.push(path).then(() => onClose());
+    }
+  }
+
   return (
     <Drawer
       {...{onClose, isOpen}}
@@ -95,9 +101,9 @@ function MobileDrawer({ onClose, isOpen, router }: MobileDrawerProps) {
           </DrawerHeader>
           <DrawerBody>
             <VStack  fontSize='3xl'>
-              <Box onClick={() => router?.push('/')}>home</Box>
-              <Box onClick={() => router?.push('/readme')}>readme</Box>
-              <Box onClick={() => router?.push('/weblog')}>weblog</Box>
+              <Box onClick={drawerLinkHandler('/')}>home</Box>
+              <Box onClick={drawerLinkHandler('/readme')}>readme</Box>
+              <Box onClick={drawerLinkHandler('/weblog')}>weblog</Box>
             </VStack>
           </DrawerBody>
         </DrawerContent>
