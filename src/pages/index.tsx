@@ -1,6 +1,6 @@
 import moment from 'moment';
 import NextLink from 'next/link';
-import { getSortedPostMeta } from '@/lib/blog';
+import { getSortedPostMeta } from '@/lib/weblog';
 import Layout from '@/components/layout';
 import { Hr, Paragraph } from '@/components/prose';
 
@@ -107,7 +107,7 @@ export default function Home({ postMeta }: {postMeta: PostMeta[]}) {
         {Object.values(postMeta).map(({postId, title, date}) => (
           <Box key={postId}>
             <Text>
-              <Link as={NextLink} href={`/blog/${postId}`}>
+              <Link as={NextLink} href={`/weblog/${postId}`}>
                 {title}
               </Link>
             </Text>
