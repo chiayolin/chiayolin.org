@@ -15,7 +15,8 @@ import {
   ColorModeContextType,
   Menu,
   MenuButton,
-  IconButton,
+  MenuItem,
+  MenuList,
 } from "@chakra-ui/react";
 
 export default function Navbar() {
@@ -25,13 +26,11 @@ export default function Navbar() {
   return (
     <Box pt={{base: '20', sm: '16'}}>
       <DesktopNav
-        router={router}
-        colorMode={colorMode}
+        {...{router, colorMode}}
         display={{base: 'none', sm: 'flex'}}
       />
       <MobileNav
-        router={router}
-        colorMode={colorMode}
+        {...{router, colorMode}}
         display={{base: 'flex', sm: 'none'}}
       />
     </Box>
@@ -39,89 +38,106 @@ export default function Navbar() {
 };
 
 interface NavProps extends FlexProps {
-  router: NextRouter,
-  colorMode: ColorModeContextType
+  router?: NextRouter,
+  colorMode?: ColorModeContextType
 }
 
-function MobileNav({router, colorMode, ...rest}: NavProps) {
-  return (
-    <>
-      <Flex
-        top='0'
-        w='100%'
-        position='fixed'
-        css={{ backdropFilter: 'blur(20px)' }}
-        bg={useColorModeValue('#ffffff80', '#20202380')}
-        zIndex={200}
-        {...rest}
-      >
-        <Container
-          p='4'
-          display='flex'
-          alignItems='center'
-        >
-          <Flex
-            flex='1'
-            justifyContent='center'
-          >
-            <Button
-              p='0'
-              ml='-2'
-              mr='auto'
-              fontSize='xl'
-              variant='link'
-            >
-              <HamburgerIcon />
-            </Button>
-          </Flex>
-          <Flex
-            flex='1'
-            justifyContent='center'
-          >
-            <Image
-              height='10'
-              alt='hayashi'
-              cursor='pointer'
-              userSelect='none'
-              src='/hayashi.png'
-              onClick={() => router.push('/')}
-              filter={useColorModeValue('', 'invert(1)')}
-            />
-          </Flex>
-          <Flex
-            flex='1'
-            justifyContent='center'
-          >
-            <Button
-              p='0'
-              mr='-2'
-              ml='auto'
-              fontSize='lg'
-              variant='link'
-              onClick={colorMode.toggleColorMode}
-              colorScheme={useColorModeValue('purple', 'orange')}
-            >
-              {useColorModeValue(<MoonIcon />, <SunIcon />)}
-            </Button>
-          </Flex>
-        </Container>
-      </Flex>
-    </>
-  );
-
-}
-
-function DesktopNav({router, colorMode, ...rest}: NavProps) {
+function BaseNav({ children, ...rest }: NavProps) {
   return (
     <Flex
       top='0'
       w='100%'
+      zIndex={200}
       position='fixed'
       css={{ backdropFilter: 'blur(20px)' }}
       bg={useColorModeValue('#ffffff80', '#20202380')}
-      zIndex={200}
       {...rest}
     >
+      {children}
+    </Flex>
+  );
+}
+
+function MobileNav({router, colorMode, ...rest}: NavProps) {
+  return (
+    <BaseNav {...rest}>
+      <Container
+        p='4'
+        display='flex'
+        alignItems='center'
+      >
+        <Flex
+          flex='1'
+          justifyContent='center'
+        >
+          <Menu
+            closeOnSelect
+          >
+            <MenuButton
+              p='0'
+              ml='-2'
+              mr='auto'
+              as={Button}
+              fontSize='xl'
+              variant='link'
+            >
+              <HamburgerIcon />
+            </MenuButton>
+            <MenuList
+            >
+              <MenuItem
+                fontWeight='medium'
+                onClick={() => router?.push('/readme')}
+              >
+                readme
+              </MenuItem>
+              <MenuItem
+                fontWeight='medium'
+                onClick={() => router?.push('/weblog')}
+              >
+                weblog
+              </MenuItem>
+            </MenuList>
+          </Menu>
+        </Flex>
+        <Flex
+          flex='1'
+          justifyContent='center'
+        >
+          <Image
+            height='10'
+            alt='hayashi'
+            cursor='pointer'
+            userSelect='none'
+            src='/hayashi.png'
+            onClick={() => router?.push('/')}
+            filter={useColorModeValue('', 'invert(1)')}
+          />
+        </Flex>
+        <Flex
+          flex='1'
+          justifyContent='center'
+        >
+          <Button
+            p='0'
+            mr='-2'
+            ml='auto'
+            fontSize='lg'
+            variant='link'
+            onClick={colorMode?.toggleColorMode}
+            colorScheme={useColorModeValue('purple', 'orange')}
+          >
+            {useColorModeValue(<MoonIcon />, <SunIcon />)}
+          </Button>
+        </Flex>
+      </Container>
+    </BaseNav>
+  );
+}
+
+function DesktopNav({router, colorMode, ...rest}: NavProps) {
+  return (
+    <BaseNav {...rest}>
       <Container
         p='4'
         display='flex'
@@ -131,7 +147,7 @@ function DesktopNav({router, colorMode, ...rest}: NavProps) {
           cursor='pointer'
           userSelect='none'
           alignItems='center'
-          onClick={() => router.push('/')}
+          onClick={() => router?.push('/')}
         >
           <Image
             filter={useColorModeValue('', 'invert(1)')}
@@ -153,14 +169,14 @@ function DesktopNav({router, colorMode, ...rest}: NavProps) {
           <Button
             size='xs'
             variant='ghost'
-            onClick={() => router.push('/readme')}
+            onClick={() => router?.push('/readme')}
           >
             readme
           </Button>
           <Button
             size='xs'
             variant='ghost'
-            onClick={() => router.push('/weblog')}
+            onClick={() => router?.push('/weblog')}
           >
             weblog
           </Button>
@@ -168,13 +184,13 @@ function DesktopNav({router, colorMode, ...rest}: NavProps) {
             size='xs'
             variant='ghost'
             colorScheme={useColorModeValue('purple', 'orange')}
-            onClick={colorMode.toggleColorMode}
+            onClick={colorMode?.toggleColorMode}
           >
             {useColorModeValue(<MoonIcon />, <SunIcon />)}
           </Button>
         </ButtonGroup>
       </Container>
-    </Flex>
+    </BaseNav>
   );
 }
 

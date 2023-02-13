@@ -8,7 +8,6 @@ const Footer: FC = () => (
       <Text
         textAlign='center'
         fontFamily='monospace'
-        fontSize='sm'
       >
         EOF (
         <Link
