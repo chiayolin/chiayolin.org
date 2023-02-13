@@ -92,7 +92,7 @@ export default function Home({ postMeta }: {postMeta: PostMeta[]}) {
 
       <Paragraph lineHeight='6'>
         I recently graduated from the University of Maryland, College Park with a B.S.
-        degree in Computer Science and a minor in Statistics.<br/>
+        degree in Computer Science and a minor in Statistics.
       </Paragraph>
 
       <Paragraph>
