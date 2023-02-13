@@ -52,7 +52,7 @@ export default function Home({ postMeta }: {postMeta: PostMeta[]}) {
           <Flex alignItems='center'>
             <IoMail />
             <Text ml='1'>
-              Email: me [at] chiayolin.org
+              Email: cyl [at] umd [dot] edu
             </Text>
           </Flex>
           <Flex alignItems='center'>
