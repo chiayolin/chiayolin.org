@@ -41,11 +41,11 @@ export default function Home({ postMeta }: {postMeta: PostMeta[]}) {
           src='https://i.imgur.com/U9sEcG6h.jpg'
         />
       </Box>
-
       <Heading size='md' fontWeight='medium'>
         Chiayo Lin
       </Heading>
       <Text mb='5' fontWeight='thin'>Software Engineer, he/him/他.</Text>
+
       <Flex mb='5' wrap='wrap' alignItems='center' rowGap='5' fontSize='sm'>
         <VStack direction='column' align='stretch' spacing='1'>
           <Flex alignItems='center'>
@@ -85,19 +85,16 @@ export default function Home({ postMeta }: {postMeta: PostMeta[]}) {
       <Heading fontFamily='mono' mb='5' size='md'>
         whoami
       </Heading>
-
       <Paragraph lineHeight='6'>
         {`I'm`} a SWE based in the Washington DC area. {`I'm`} currently open to
         software engineering opportunities across Continental US.
       </Paragraph>
-
       <Paragraph lineHeight='6'>
         I recently graduated from the University of Maryland, College Park with a B.S.
         degree in Computer Science and a minor in Statistics.
       </Paragraph>
-
       <Paragraph>
-        <Link as={NextLink} mb='5' href='/readme'>Read more...</Link>
+        <Link as={NextLink} mb='5' href='/readme'>read more...</Link>
       </Paragraph>
       <Hr />
 
@@ -121,13 +118,13 @@ export default function Home({ postMeta }: {postMeta: PostMeta[]}) {
           ))}
       </VStack>
       <Paragraph>
-        (<Link
+        <Link
           as={NextLink}
           mb='5'
           href='/weblog'
         >
-         All posts
-        </Link>)
+         all posts
+        </Link>
       </Paragraph>
     </Layout>
   )

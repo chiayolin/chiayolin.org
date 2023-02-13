@@ -26,22 +26,11 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
         <meta name="description" content="Chiayo's homepage on the web" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Box pt='16'>
-        <Box
-          mt='-2'
-          w='100%'
-          position='fixed'
-          background='orange.400'
-          textAlign='center'
-        >
-          <Heading size='sm' color='black'>
-          This Site is Under Construction
-          </Heading>
-        </Box>
+      <Box>
         <Navbar />
         <Box>
           <Container>
-            {/*<Dashboard />*/}
+            <Dashboard />
             {children}
           </Container>
         </Box>
