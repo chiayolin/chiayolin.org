@@ -3,7 +3,7 @@ import NextLink from 'next/link';
 import { getSortedPostMeta } from '@/lib/blog';
 import Layout from '@/components/layout';
 import { Hr, Paragraph } from '@/components/prose';
-import { IoLockClosed, IoLogoGithub, IoLogoLinkedin, IoMail } from "react-icons/io5";
+
 import {
   Box,
   Text,
@@ -13,6 +13,13 @@ import {
   Image,
   Flex,
 } from '@chakra-ui/react';
+
+import {
+  IoMail,
+  IoLockClosed,
+  IoLogoGithub,
+  IoLogoLinkedin,
+} from 'react-icons/io5';
 
 export async function getStaticProps() {
   const postMeta = await getSortedPostMeta();
@@ -34,7 +41,10 @@ export default function Home({ postMeta }: {postMeta: PostMeta[]}) {
   return (
     <Layout>
       <Box overflow='clip' maxH='60' borderRadius='lg' mb='5'>
-        <Image src='https://i.imgur.com/U9sEcG6h.jpg' />
+        <Image
+          alt='cover photo'
+          src='https://i.imgur.com/U9sEcG6h.jpg'
+        />
       </Box>
 
       <Heading size='md' fontWeight='medium'>
