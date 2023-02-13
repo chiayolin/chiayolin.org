@@ -23,8 +23,6 @@ import {
   VStack,
 } from "@chakra-ui/react";
 
-import NextLink from 'next/link';
-
 export default function Navbar() {
   const colorMode = useColorMode();
   const router = useRouter();
@@ -97,6 +95,7 @@ function MobileDrawer({ onClose, isOpen, router }: MobileDrawerProps) {
           </DrawerHeader>
           <DrawerBody>
             <VStack  fontSize='3xl'>
+              <Box onClick={() => router?.push('/')}>home</Box>
               <Box onClick={() => router?.push('/readme')}>readme</Box>
               <Box onClick={() => router?.push('/weblog')}>weblog</Box>
             </VStack>
