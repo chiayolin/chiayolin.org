@@ -37,6 +37,7 @@ export default function Navbar() {
       <Flex
         overflow='clip'
         cursor='pointer'
+        userSelect='none'
         alignItems='center'
         onClick={() => router.push('/')}
       >

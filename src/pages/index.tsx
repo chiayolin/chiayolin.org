@@ -34,7 +34,7 @@ export default function Home({ postMeta }: {postMeta: PostMeta[]}) {
   return (
     <Layout>
       <Box overflow='clip' maxH='60' borderRadius='lg' mb='5'>
-        <Image src='/cover.jpg' />
+        <Image src='https://i.imgur.com/U9sEcG6h.jpg' />
       </Box>
 
       <Heading size='md' fontWeight='medium'>
@@ -67,7 +67,6 @@ export default function Home({ postMeta }: {postMeta: PostMeta[]}) {
               GitHub: <Link href=''>@chiayolin</Link>
             </Text>
           </Flex>
-
         </VStack>
       </Flex>
       <Hr />
