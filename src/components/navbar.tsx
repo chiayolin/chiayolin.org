@@ -27,7 +27,6 @@ export default function Navbar() {
       css={{ backdropFilter: 'blur(20px)' }}
       bg={useColorModeValue('#ffffff80', '#20202380')}
       zIndex={200}
-
     >
     <Container
       p='4'
@@ -42,7 +41,7 @@ export default function Navbar() {
         onClick={() => router.push('/')}
       >
         <Image
-          filter={colorMode === 'light' ? '' : 'invert(1)'}
+          filter={useColorModeValue('', 'invert(1)')}
           height='6'
           alt='hayashi'
           src='/hayashi.png'
@@ -61,6 +60,7 @@ export default function Navbar() {
         <Button
           size='xs'
           variant='ghost'
+          onClick={() => router.push('/readme')}
         >
           readme
         </Button>
@@ -74,10 +74,10 @@ export default function Navbar() {
         <Spacer />
         <Button
           size='xs'
-          colorScheme={colorMode === 'light' ? 'purple' : 'orange'}
+          colorScheme={useColorModeValue('purple', 'orange')}
           onClick={toggleColorMode}
         >
-          {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+          {useColorModeValue(<MoonIcon />, <SunIcon />)}
         </Button>
       </ButtonGroup>
     </Container>

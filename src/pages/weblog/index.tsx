@@ -19,7 +19,7 @@ export default function Weblog( { postMeta }: { postMeta: PostMeta[] }) {
     <Layout>
       <Heading
         mb='5'
-        size='lg'
+        size='md'
         fontFamily='mono'
       >
         ~/*.txt
@@ -40,5 +40,4 @@ export default function Weblog( { postMeta }: { postMeta: PostMeta[] }) {
         </VStack>
     </Layout>
   );
-
 }

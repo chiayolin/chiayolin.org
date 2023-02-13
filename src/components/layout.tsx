@@ -1,11 +1,10 @@
 import { FC, PropsWithChildren } from 'react';
 
-import { Box, Container, } from '@chakra-ui/react';
+import { Box, Container, Heading, } from '@chakra-ui/react';
 import Dashboard from '@/components/dashboard';
 import Navbar from '@/components/navbar';
 import Footer from '@/components/footer';
 import Head from 'next/head';
-import { Hr } from './prose';
 
 //interface Props {
 //  // children prop has to be explicitly typed, since implicit children has been
@@ -28,6 +27,17 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Box pt='16'>
+        <Box
+          mt='-2'
+          w='100%'
+          position='fixed'
+          background='orange.400'
+          textAlign='center'
+        >
+          <Heading size='sm' color='black'>
+          This Site is Under Construction
+          </Heading>
+        </Box>
         <Navbar />
         <Box>
           <Container>

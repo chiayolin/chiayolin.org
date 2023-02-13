@@ -97,12 +97,12 @@ export default function Home({ postMeta }: {postMeta: PostMeta[]}) {
       </Paragraph>
 
       <Paragraph>
-        <Link mb='5' href=''>Read more...</Link>
+        <Link as={NextLink} mb='5' href='/readme'>Read more...</Link>
       </Paragraph>
       <Hr />
 
       <Heading fontFamily='mono' mb='5' size='md'>
-        ~/*.txt
+        ls ~/*.md | head -n 3
       </Heading>
       <VStack alignItems='start' mb='5'>
         {Object
@@ -121,13 +121,13 @@ export default function Home({ postMeta }: {postMeta: PostMeta[]}) {
           ))}
       </VStack>
       <Paragraph>
-        <Link
+        (<Link
           as={NextLink}
           mb='5'
           href='/weblog'
         >
-         View all posts
-        </Link>
+         All posts
+        </Link>)
       </Paragraph>
     </Layout>
   )
