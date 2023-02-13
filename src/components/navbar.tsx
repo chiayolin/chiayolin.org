@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { useRouter } from 'next/router';
 
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import {
@@ -14,47 +14,64 @@ import {
   ButtonGroup,
 } from "@chakra-ui/react";
 
-const Navbar: FC = () => {
+
+export default function Navbar() {
   const { colorMode, toggleColorMode } = useColorMode();
+  const router = useRouter();
 
   return (
     <Flex
       w='100%'
       top='0'
       position='fixed'
-      css={{ backdropFilter: 'blur(10px)' }}
-      bg={useColorModeValue('#ffffff40', '#20202380')}
+      css={{ backdropFilter: 'blur(20px)' }}
+      bg={useColorModeValue('#ffffff80', '#20202380')}
       zIndex={200}
+
     >
     <Container
       p='4'
       display='flex'
       alignItems='center'
     >
-      <Image
-        filter={colorMode === 'light' ? '' : 'invert(1)'}
-        height='6'
-        alt='hayashi'
-        src='/hayashi.png'
-      />
-      <Heading
-        ml='1.5'
-        size='sm'
-        fontWeight='black'
-        letterSpacing='tight'
+      <Flex
+        overflow='clip'
+        cursor='pointer'
+        alignItems='center'
+        onClick={() => router.push('/')}
       >
-        chiayolin<Box as='span' fontWeight='normal'>.org</Box>
-      </Heading>
+        <Image
+          filter={colorMode === 'light' ? '' : 'invert(1)'}
+          height='6'
+          alt='hayashi'
+          src='/hayashi.png'
+        />
+        <Heading
+          ml='1.5'
+          size='sm'
+          fontWeight='black'
+          letterSpacing='tight'
+        >
+          chiayolin<Box as='span' fontWeight='normal'>.org</Box>
+        </Heading>
+      </Flex>
       <Spacer />
       <ButtonGroup>
         <Button
           size='xs'
-          variant='outline'
+          variant='ghost'
         >
-          Gustbook
+          about
         </Button>
         <Button
           size='xs'
+          variant='ghost'
+        >
+          blog
+        </Button>
+        <Button
+          size='xs'
+          variant='ghost'
           colorScheme={colorMode === 'light' ? 'purple' : 'orange'}
           onClick={toggleColorMode}
         >
@@ -65,6 +82,4 @@ const Navbar: FC = () => {
     </Flex>
   );
 };
-
-export default Navbar;
 

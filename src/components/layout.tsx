@@ -1,8 +1,11 @@
 import { FC, PropsWithChildren } from 'react';
+
 import { Box, Container, } from '@chakra-ui/react';
-import Dashboard from './dashboard';
-import Navbar from './navbar';
-import Footer from './footer';
+import Dashboard from '@/components/dashboard';
+import Navbar from '@/components/navbar';
+import Footer from '@/components/footer';
+import Head from 'next/head';
+import { Hr } from './prose';
 
 //interface Props {
 //  // children prop has to be explicitly typed, since implicit children has been
@@ -17,16 +20,23 @@ import Footer from './footer';
 
 const Layout: FC<PropsWithChildren> = ({ children }) => {
   return (
-    <Box pt='20'>
-      <Navbar />
-      <Box>
-        <Container>
-          <Dashboard />
-          {children}
-        </Container>
+    <>
+      <Head>
+        <title>chiayolin.org</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="Chiayo's homepage on the web" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Box pt='16'>
+        <Navbar />
+        <Box>
+          <Container>
+            {children}
+          </Container>
+        </Box>
+        <Footer />
       </Box>
-      <Footer />
-    </Box>
+    </>
   );
 };
 
