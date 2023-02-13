@@ -8,18 +8,20 @@ import {
   StyleFunctionProps
 } from '@chakra-ui/styled-system';
 
-const darkModeBg = '#202023';
-const lightModeBg = '#ffffff';
-
 const config: ThemeConfig = {
   initialColorMode: 'system',
   useSystemColorMode: true,
 };
 
+const colors = {
+  darkBg: '#202023',
+  lightBg: '#ffffff',
+}
+
 const styles = {
   global: (props: StyleFunctionProps) => ({
     body: {
-      bg: mode(lightModeBg, darkModeBg)(props),
+      bg: mode('lightBg', 'darkBg')(props),
     },
     '[data-rehype-pretty-code-fragment]': {
       p: '2',
@@ -43,11 +45,11 @@ const {
 const menuTheme = defineMultiStyleConfig({
   baseStyle: (props: StyleFunctionProps) => definePartsStyle({
     list: {
-      bg: mode(lightModeBg, darkModeBg)(props),
+      bg: mode('lightBg', 'darkBg')(props),
     },
     item: {
       // disable :focus and :hover bg
-      bg: mode(lightModeBg, darkModeBg)(props),
+      bg: mode('lightBg', 'darkBg')(props),
     }
   }),
 });
@@ -66,6 +68,7 @@ const theme = extendTheme(
   {
     config,
     styles,
+    colors,
     components,
   },
 );

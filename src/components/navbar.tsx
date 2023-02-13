@@ -13,11 +13,17 @@ import {
   ButtonGroup,
   FlexProps,
   ColorModeContextType,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
+  Drawer,
+  DrawerOverlay,
+  useDisclosure,
+  DrawerContent,
+  DrawerCloseButton,
+  DrawerHeader,
+  DrawerBody,
+  VStack,
 } from "@chakra-ui/react";
+
+import NextLink from 'next/link';
 
 export default function Navbar() {
   const colorMode = useColorMode();
@@ -42,7 +48,7 @@ interface NavProps extends FlexProps {
   colorMode?: ColorModeContextType
 }
 
-function BaseNav({ children, ...rest }: NavProps) {
+function BaseNav({ children, ...rest}: NavProps) {
   return (
     <Flex
       top='0'
@@ -58,7 +64,52 @@ function BaseNav({ children, ...rest }: NavProps) {
   );
 }
 
+interface MobileDrawerProps {
+  isOpen: boolean
+  onClose: () => void
+}
+
+function MobileDrawer({ onClose, isOpen }: MobileDrawerProps) {
+  return (
+    <Drawer
+      {...{onClose, isOpen}}
+      placement='left'
+      size='xs'
+    >
+      <DrawerOverlay>
+        <DrawerContent bg={useColorModeValue('lightBg', 'darkBg')}>
+          <DrawerCloseButton
+            top='5'
+            variant='link'
+            _focus={{border: 'none', boxShadow:'none'}}
+          />
+          <DrawerHeader>
+            <Heading
+              mt='2'
+              href='/'
+              fontSize='md'
+              as={NextLink}
+              fontWeight='black'
+              letterSpacing='tight'
+            >
+              chiayolin<Box as='span' fontWeight='normal'>.org</Box>
+            </Heading>
+          </DrawerHeader>
+          <DrawerBody>
+            <VStack  fontSize='3xl'>
+              <Box as={NextLink} href='/readme'>readme</Box>
+              <Box as={NextLink} href='/weblog'>weblog</Box>
+            </VStack>
+          </DrawerBody>
+        </DrawerContent>
+      </DrawerOverlay>
+    </Drawer>
+  );
+}
+
 function MobileNav({router, colorMode, ...rest}: NavProps) {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <BaseNav {...rest}>
       <Container
@@ -69,36 +120,21 @@ function MobileNav({router, colorMode, ...rest}: NavProps) {
         <Flex
           flex='1'
           justifyContent='center'
+          alignItems='center'
         >
-          <Menu
-            closeOnSelect
+          <Box
+            p='0'
+            ml='-2'
+            mr='auto'
+            as={Button}
+            fontSize='xl'
+            variant='link'
+            onClick={onOpen}
+            color={useColorModeValue('black', 'white')}
           >
-            <MenuButton
-              p='0'
-              ml='-2'
-              mr='auto'
-              as={Button}
-              fontSize='xl'
-              variant='link'
-            >
-              <HamburgerIcon />
-            </MenuButton>
-            <MenuList
-            >
-              <MenuItem
-                fontWeight='medium'
-                onClick={() => router?.push('/readme')}
-              >
-                readme
-              </MenuItem>
-              <MenuItem
-                fontWeight='medium'
-                onClick={() => router?.push('/weblog')}
-              >
-                weblog
-              </MenuItem>
-            </MenuList>
-          </Menu>
+            <HamburgerIcon />
+          </Box>
+          <MobileDrawer {...{isOpen, onClose}} />
         </Flex>
         <Flex
           flex='1'
@@ -117,6 +153,7 @@ function MobileNav({router, colorMode, ...rest}: NavProps) {
         <Flex
           flex='1'
           justifyContent='center'
+          alignItems='center'
         >
           <Button
             p='0'

@@ -1,8 +1,8 @@
 import moment from 'moment';
 import NextLink from 'next/link';
 import { getSortedPostMeta, PostMeta } from '@/lib/weblog';
-import Layout from '@/components/layout';
 import { Hr, Paragraph } from '@/components/prose';
+import Layout from '@/components/layout';
 
 import {
   Box,
@@ -20,6 +20,7 @@ import {
   IoLogoGithub,
   IoLogoLinkedin,
 } from 'react-icons/io5';
+
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 
 export async function getStaticProps() {
@@ -74,7 +75,7 @@ export default function Home({ postMeta }: {postMeta: PostMeta[]}) {
             <Text ml='1'>
               GitHub:{' '}
               <Link isExternal href='https://github.com/chiayolin'>
-              @chiayolin <ExternalLinkIcon />
+                @chiayolin <ExternalLinkIcon />
               </Link>
             </Text>
           </Flex>
@@ -82,7 +83,11 @@ export default function Home({ postMeta }: {postMeta: PostMeta[]}) {
       </Flex>
       <Hr />
 
-      <Heading fontFamily='mono' mb='5' size='md'>
+      <Heading
+        mb='5'
+        size='md'
+        fontFamily='mono'
+      >
         whoami
       </Heading>
       <Paragraph lineHeight='6'>
@@ -94,11 +99,21 @@ export default function Home({ postMeta }: {postMeta: PostMeta[]}) {
         degree in Computer Science and a minor in Statistics.
       </Paragraph>
       <Paragraph>
-        <Link as={NextLink} mb='5' href='/readme'>read more...</Link>
+        <Link
+          mb='5'
+          as={NextLink}
+          href='/readme'
+        >
+          read more...
+        </Link>
       </Paragraph>
       <Hr />
 
-      <Heading fontFamily='mono' mb='5' size='md'>
+      <Heading
+        fontFamily='mono'
+        size='md'
+        mb='5'
+      >
         ls ~/*.md | head -n 3
       </Heading>
       <VStack alignItems='start' mb='5'>
@@ -107,11 +122,18 @@ export default function Home({ postMeta }: {postMeta: PostMeta[]}) {
           .slice(0, 3).map(({postId, title, date}) => (
             <Box key={postId}>
               <Text>
-                <Link as={NextLink} href={`/weblog/${postId}`}>
+                <Link
+                  as={NextLink}
+                  href={`/weblog/${postId}`}
+                >
                   {title}
                 </Link>
               </Text>
-              <Text fontFamily='mono' fontSize='xs' colorScheme='gray'>
+              <Text
+                fontSize='xs'
+                fontFamily='mono'
+                colorScheme='gray'
+              >
                 {moment(date).format('MMM DD, YYYY')}
               </Text>
             </Box>
@@ -119,11 +141,11 @@ export default function Home({ postMeta }: {postMeta: PostMeta[]}) {
       </VStack>
       <Paragraph>
         <Link
-          as={NextLink}
           mb='5'
+          as={NextLink}
           href='/weblog'
         >
-         all posts
+          all posts
         </Link>
       </Paragraph>
     </Layout>
