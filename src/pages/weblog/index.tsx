@@ -27,12 +27,12 @@ export default function Weblog( { postMeta }: { postMeta: PostMeta[] }) {
       <VStack align='start'>
         {Object.values(postMeta).map(({postId, title, date}) => (
           <Box key={postId}>
-            <Text>
+            <Text fontSize='lg'>
               <Link as={NextLink} href={`/weblog/${postId}`}>
                 {title}
               </Link>
             </Text>
-            <Text fontFamily='mono' fontSize='xs' colorScheme='gray'>
+            <Text fontSize='sm' colorScheme='gray'>
               {formatDate(date)}
             </Text>
           </Box>

@@ -4,12 +4,12 @@ import { ExternalLinkIcon } from "@chakra-ui/icons";
 
 const Footer: FC = () => (
   <>
-    <Center mt='8' mb='8'>
+    <Center mt='12' mb='12'>
       <Text
         textAlign='center'
         fontFamily='monospace'
       >
-        EOF (
+        Copyleft 2014-2023 Chiayo Lin (
         <Link
           href='https://github.com/chiayolin/chiayolin.github.io'
           isExternal

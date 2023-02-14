@@ -121,7 +121,7 @@ export default function Home({ postMeta }: {postMeta: PostMeta[]}) {
           .values(postMeta)
           .slice(0, 3).map(({postId, title, date}) => (
             <Box key={postId}>
-              <Text>
+              <Text fontSize='lg'>
                 <Link
                   as={NextLink}
                   href={`/weblog/${postId}`}
@@ -130,8 +130,7 @@ export default function Home({ postMeta }: {postMeta: PostMeta[]}) {
                 </Link>
               </Text>
               <Text
-                fontSize='xs'
-                fontFamily='mono'
+                fontSize='sm'
                 colorScheme='gray'
               >
                 {formatDate(date)}
