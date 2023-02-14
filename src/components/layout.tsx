@@ -1,7 +1,6 @@
 import { FC, PropsWithChildren } from 'react';
-
-import { Box, Container, Heading, } from '@chakra-ui/react';
-import Dashboard from '@/components/dashboard';
+import { Box, Container, } from '@chakra-ui/react';
+//import Dashboard from '@/components/dashboard';
 import Navbar from '@/components/navbar';
 import Footer from '@/components/footer';
 import Head from 'next/head';
