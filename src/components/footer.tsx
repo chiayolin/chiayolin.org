@@ -11,7 +11,7 @@ export default function Footer() {
         textAlign='center'
         fontFamily='monospace'
       >
-        Copyleft 2014-'23 Chiayo Lin (
+        Copyleft 2014-{`'`}23 Chiayo Lin (
         <Link
           href='https://github.com/chiayolin/chiayolin.github.io'
           isExternal
