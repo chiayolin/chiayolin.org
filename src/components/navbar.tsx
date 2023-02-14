@@ -69,7 +69,7 @@ interface MobileDrawerProps {
 }
 
 function MobileDrawer({ onClose, isOpen, router }: MobileDrawerProps) {
-  const drawerLinkHandler = (path: string) => {
+  const useLinkHandler = (path: string) => {
     return () => {
       router?.push(path).then(() => onClose());
     }
@@ -94,16 +94,16 @@ function MobileDrawer({ onClose, isOpen, router }: MobileDrawerProps) {
               fontSize='md'
               fontWeight='black'
               letterSpacing='tight'
-              onClick={() => router?.push('/')}
+              onClick={useLinkHandler('/')}
             >
               chiayolin<Box as='span' fontWeight='normal'>.org</Box>
             </Heading>
           </DrawerHeader>
           <DrawerBody>
-            <VStack  fontSize='3xl'>
-              <Box onClick={drawerLinkHandler('/')}>home</Box>
-              <Box onClick={drawerLinkHandler('/readme')}>readme</Box>
-              <Box onClick={drawerLinkHandler('/weblog')}>weblog</Box>
+            <VStack fontSize='3xl'>
+              <Box onClick={useLinkHandler('/')}>home</Box>
+              <Box onClick={useLinkHandler('/readme')}>readme</Box>
+              <Box onClick={useLinkHandler('/weblog')}>weblog</Box>
             </VStack>
           </DrawerBody>
         </DrawerContent>
@@ -208,6 +208,13 @@ function DesktopNav({router, colorMode, ...rest}: NavProps) {
         </Flex>
         <Spacer />
         <ButtonGroup>
+          <Button
+            size='xs'
+            variant='ghost'
+            onClick={() => router?.push('/')}
+          >
+            home
+          </Button>
           <Button
             size='xs'
             variant='ghost'
