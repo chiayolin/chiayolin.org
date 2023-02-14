@@ -21,14 +21,12 @@ export default function Error404() {
         whiteSpace='nowrap'
         fontFamily='monospace'
       >
-        fprintf(stderr, "error: no such file or directory\n");<br/>
-        fprintf(stderr, "visit / for the index of this site.\n");<br/>
-        return EXIT_FAILURE;
+        {`fprintf(stderr, "error: no such file or directory\n");`}<br/>
+        {`fprintf(stderr, "visit / for the index of this site.\n");`}<br/>
+        {`return EXIT_FAILURE;`}
       </Box>
-      <Text
-        mb='5'
-      >
-        Return <Link as={NextLink} href='/'>home</Link>.
+      <Text mb='5' >
+        <Link as={NextLink} href='/'>return home</Link>
       </Text>
     </Layout>
   )
