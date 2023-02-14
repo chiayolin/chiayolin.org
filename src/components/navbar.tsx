@@ -178,6 +178,12 @@ function MobileNav({router, colorMode, ...rest}: NavProps) {
 }
 
 function DesktopNav({router, colorMode, ...rest}: NavProps) {
+  const useIsActive = (path: string) => {
+    // match first route i.e. /weblog/hello => /weblog
+    const base = router?.asPath.match(/^\/[^/]*(?=$|\/)/);
+    return (base ? base[0] : '/') === path;
+  }
+
   return (
     <BaseNav {...rest}>
       <Container
@@ -211,6 +217,7 @@ function DesktopNav({router, colorMode, ...rest}: NavProps) {
           <Button
             size='xs'
             variant='ghost'
+            isActive={useIsActive('/')}
             onClick={() => router?.push('/')}
           >
             home
@@ -218,6 +225,7 @@ function DesktopNav({router, colorMode, ...rest}: NavProps) {
           <Button
             size='xs'
             variant='ghost'
+            isActive={useIsActive('/readme')}
             onClick={() => router?.push('/readme')}
           >
             readme
@@ -225,6 +233,7 @@ function DesktopNav({router, colorMode, ...rest}: NavProps) {
           <Button
             size='xs'
             variant='ghost'
+            isActive={useIsActive('/weblog')}
             onClick={() => router?.push('/weblog')}
           >
             weblog
