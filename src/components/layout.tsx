@@ -4,6 +4,7 @@ import { Box, Container, } from '@chakra-ui/react';
 import Navbar from '@/components/navbar';
 import Footer from '@/components/footer';
 import Head from 'next/head';
+import { Hr } from './prose';
 
 //interface Props {
 //  // children prop has to be explicitly typed, since implicit children has been
@@ -27,13 +28,13 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
       </Head>
       <Box>
         <Navbar />
-        <Box>
-          <Container>
-            {/*<Dashboard />*/}
-            {children}
-          </Container>
-        </Box>
-        <Footer />
+        <Container>
+          {/*<Dashboard />*/}
+          {children}
+        </Container>
+        <Container>
+          <Footer />
+        </Container>
       </Box>
     </>
   );
