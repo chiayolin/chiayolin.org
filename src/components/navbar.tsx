@@ -41,12 +41,22 @@ export default function Navbar() {
   );
 };
 
+function useIsActive(router: NextRouter, path: string) {
+  // match first route i.e. /weblog/hello => /weblog
+  const regex = new RegExp('^\/[^/]*(?=$|\/)');
+  const base = router.asPath.match(regex);
+
+  return (base ? base[0] : '/') === path;
+}
+
 interface NavProps extends FlexProps {
-  router?: NextRouter,
+  router: NextRouter,
   colorMode?: ColorModeContextType
 }
 
-function BaseNav({ children, ...rest}: NavProps) {
+function BaseNav(props: NavProps) {
+  const { children, colorMode, ...rest } = props;
+
   return (
     <Flex
       top='0'
@@ -65,13 +75,13 @@ function BaseNav({ children, ...rest}: NavProps) {
 interface MobileDrawerProps {
   isOpen: boolean
   onClose: () => void
-  router: NextRouter | undefined
+  router: NextRouter
 }
 
 function MobileDrawer({ onClose, isOpen, router }: MobileDrawerProps) {
   const useLinkHandler = (path: string) => {
     return () => {
-      router?.push(path).then(() => onClose());
+      router.push(path).then(() => onClose());
     }
   }
 
@@ -100,10 +110,34 @@ function MobileDrawer({ onClose, isOpen, router }: MobileDrawerProps) {
             </Heading>
           </DrawerHeader>
           <DrawerBody>
-            <VStack fontSize='3xl'>
-              <Box onClick={useLinkHandler('/')}>home</Box>
-              <Box onClick={useLinkHandler('/readme')}>readme</Box>
-              <Box onClick={useLinkHandler('/weblog')}>weblog</Box>
+            <VStack mt='2'>
+              <Button
+                size='lg'
+                variant='ghost'
+                fontWeight='medium'
+                isActive={useIsActive(router, '/')}
+                onClick={() => router.push('/')}
+              >
+                home
+              </Button>
+              <Button
+                size='lg'
+                variant='ghost'
+                fontWeight='medium'
+                isActive={useIsActive(router, '/readme')}
+                onClick={() => router.push('/readme')}
+              >
+                readme
+              </Button>
+              <Button
+                size='lg'
+                variant='ghost'
+                fontWeight='medium'
+                isActive={useIsActive(router, '/weblog')}
+                onClick={() => router.push('/weblog')}
+              >
+                weblog
+              </Button>
             </VStack>
           </DrawerBody>
         </DrawerContent>
@@ -112,11 +146,12 @@ function MobileDrawer({ onClose, isOpen, router }: MobileDrawerProps) {
   );
 }
 
-function MobileNav({router, colorMode, ...rest}: NavProps) {
+function MobileNav(props: NavProps) {
+  const { router, colorMode } = props;
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <BaseNav {...rest}>
+    <BaseNav {...props}>
       <Container
         p='4'
         display='flex'
@@ -151,7 +186,7 @@ function MobileNav({router, colorMode, ...rest}: NavProps) {
             cursor='pointer'
             userSelect='none'
             src='/hayashi.png'
-            onClick={() => router?.push('/')}
+            onClick={() => router.push('/')}
             filter={useColorModeValue('', 'invert(1)')}
           />
         </Flex>
@@ -177,15 +212,12 @@ function MobileNav({router, colorMode, ...rest}: NavProps) {
   );
 }
 
-function DesktopNav({router, colorMode, ...rest}: NavProps) {
-  const useIsActive = (path: string) => {
-    // match first route i.e. /weblog/hello => /weblog
-    const base = router?.asPath.match(/^\/[^/]*(?=$|\/)/);
-    return (base ? base[0] : '/') === path;
-  }
+
+function DesktopNav(props: NavProps) {
+  const { router, colorMode } = props;
 
   return (
-    <BaseNav {...rest}>
+    <BaseNav {...props}>
       <Container
         p='4'
         display='flex'
@@ -195,7 +227,7 @@ function DesktopNav({router, colorMode, ...rest}: NavProps) {
           cursor='pointer'
           userSelect='none'
           alignItems='center'
-          onClick={() => router?.push('/')}
+          onClick={() => router.push('/')}
         >
           <Image
             filter={useColorModeValue('', 'invert(1)')}
@@ -217,24 +249,24 @@ function DesktopNav({router, colorMode, ...rest}: NavProps) {
           <Button
             size='xs'
             variant='ghost'
-            isActive={useIsActive('/')}
-            onClick={() => router?.push('/')}
+            isActive={useIsActive(router, '/')}
+            onClick={() => router.push('/')}
           >
             home
           </Button>
           <Button
             size='xs'
             variant='ghost'
-            isActive={useIsActive('/readme')}
-            onClick={() => router?.push('/readme')}
+            isActive={useIsActive(router, '/readme')}
+            onClick={() => router.push('/readme')}
           >
             readme
           </Button>
           <Button
             size='xs'
             variant='ghost'
-            isActive={useIsActive('/weblog')}
-            onClick={() => router?.push('/weblog')}
+            isActive={useIsActive(router, '/weblog')}
+            onClick={() => router.push('/weblog')}
           >
             weblog
           </Button>
