@@ -1,4 +1,3 @@
-import moment from 'moment';
 import NextLink from 'next/link';
 import { getSortedPostMeta, PostMeta } from '@/lib/weblog';
 import { Hr, Paragraph } from '@/components/prose';
@@ -22,6 +21,7 @@ import {
 } from 'react-icons/io5';
 
 import { ExternalLinkIcon } from '@chakra-ui/icons';
+import { formatDate } from '@/lib/date';
 
 export async function getStaticProps() {
   const postMeta = await getSortedPostMeta();
@@ -134,7 +134,7 @@ export default function Home({ postMeta }: {postMeta: PostMeta[]}) {
                 fontFamily='mono'
                 colorScheme='gray'
               >
-                {moment(date).format('MMM DD, YYYY')}
+                {formatDate(date)}
               </Text>
             </Box>
           ))}

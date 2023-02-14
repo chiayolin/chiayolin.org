@@ -1,4 +1,3 @@
-import moment from 'moment';
 import { getPostData, getPostIds } from '@/lib/weblog';
 
 import Layout from '@/components/layout';
@@ -11,6 +10,7 @@ import {
 
 import MDXComponents from '@/components/mdx-components';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
+import { formatDate } from '@/lib/date';
 
 interface PostId {
   params: {
@@ -56,7 +56,7 @@ export default function Post({ mdxSource }: MDXSource) {
       </Heading> 
       <Box mb='8'>
         <Text fontSize='sm'>
-          {moment(frontmatter?.date).format('MMM DD, YYYY')}
+          {formatDate(frontmatter?.date)}
           {frontmatter?.location ? ` @ ${frontmatter?.location}` : ''}
         </Text>
       </Box>

@@ -1,8 +1,8 @@
 import Layout from '@/components/layout';
+import { formatDate } from '@/lib/date';
 import { getSortedPostMeta, PostMeta } from '@/lib/weblog';
 import { Box, Heading, Link, Text, VStack } from '@chakra-ui/react';
 import NextLink from 'next/link';
-import moment from 'moment';
 
 export async function getStaticProps() {
   const postMeta = await getSortedPostMeta();
@@ -33,7 +33,7 @@ export default function Weblog( { postMeta }: { postMeta: PostMeta[] }) {
               </Link>
             </Text>
             <Text fontFamily='mono' fontSize='xs' colorScheme='gray'>
-              {moment(date).format('MMM DD, YYYY')}
+              {formatDate(date)}
             </Text>
           </Box>
         ))}
