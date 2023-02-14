@@ -1,25 +1,27 @@
-import { FC } from "react";
+import Balancer from 'react-wrap-balancer';
 import { Center, Text, Link } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 
-const Footer: FC = () => (
-  <>
-    <Center mt='12' mb='12'>
+
+export default function Footer() {
+  return (
+    <Center mx='2' my='12'>
+      <Balancer>
       <Text
         textAlign='center'
         fontFamily='monospace'
       >
-        Copyleft 2014-2023 Chiayo Lin (
+        Copyleft 2014-'23 Chiayo Lin (
         <Link
           href='https://github.com/chiayolin/chiayolin.github.io'
           isExternal
         >
-          view source <ExternalLinkIcon />
+          source <ExternalLinkIcon />
         </Link>
         )
       </Text>
+      </Balancer>
     </Center>
-  </>
-);
+  );
+}
 
-export default Footer;
