@@ -1,0 +1,21 @@
+---
+title   : A Note on Containerizing Python Services
+date    : 2021-04-30
+location: Da Lat, Vietnam
+---
+
+![sys arch](https://i.imgur.com/6OteZlph.jpg)
+
+<i style={{textAlign: 'center'}}>
+  Figure. "An Example of Containerized Architecture" by Chiayo Lin (2020)
+</i>
+
+This is a note to myself on containerizing Python services using Docker. That being said, this article is not limited to only applications written in Python, since the overall concept of containerization using Docker is universal regardless of the languages used. Although this article is meant for my future self, I hope that whoever reads this will find it useful.
+
+I needed to deploy a Python service for an industrial visualization software at a company where I worked. The most effortless solution was to run the Python script directly on one of the company’s servers. However, such simple solution was not the result of some clever thinking but rather the absence of thoughts. After some research, I found that containerization is the more optimal and scalable way to deploy a service.
+
+Having a TTY attached is not necessary for the service in question, since its primary mode of communication is not via standard I/O. The only necessary output is the logging, which can be redirected to a file or syslog socket. For that reason, we can simply daemonize the process. However, simply running the service on top of the OS is not optimal nor scalable. This is because dependencies and environment settings are not guaranteed to remain consistent across different servers, which can lead to unexpected behavior or errors.
+
+This is where Docker comes in. By containerizing the service, we can ensure that the dependencies and environment settings are consistent across all servers. This makes it easier to deploy the service and ensures that it will run consistently regardless of the underlying server infrastructure.
+
+Overall, containerization using Docker is a powerful tool for deploying services. It ensures consistency and scalability while making it easier to manage and deploy services. I hope this note will be useful to me and anyone else who may be looking to containerize their services.
