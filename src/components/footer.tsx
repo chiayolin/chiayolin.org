@@ -6,20 +6,20 @@ import { Hr } from './prose';
 
 export default function Footer() {
   return (
-    <Box mt='6' mb='12'>
-      <Hr w='100%' mb='12' />
+    <Box my='6'>
+      <Hr w='100%' />
       <Center>
         <Balancer>
           <Text
             textAlign='center'
             fontFamily='monospace'
           >
-            Copyleft 2014-{`'`}23 Chiayo Lin (
+            © 2013-2023 chiayolin.org (
             <Link
               href='https://github.com/chiayolin/chiayolin.github.io'
               isExternal
             >
-              source <ExternalLinkIcon />
+              repository <ExternalLinkIcon />
             </Link>
             )
           </Text>
