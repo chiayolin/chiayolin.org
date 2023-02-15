@@ -22,22 +22,24 @@ export default function Weblog( { postMeta }: { postMeta: PostMeta[] }) {
         size='md'
         fontFamily='mono'
       >
-        ~/*.txt
+        ls ~/*.txt
       </Heading>
       <VStack align='start'>
-        {Object.values(postMeta).map(({postId, title, date}) => (
-          <Box key={postId}>
-            <Text fontSize='lg'>
-              <Link as={NextLink} href={`/weblog/${postId}`}>
-                {title}
-              </Link>
-            </Text>
-            <Text fontSize='sm' colorScheme='gray'>
-              {formatDate(date)}
-            </Text>
-          </Box>
-        ))}
-        </VStack>
+        {Object.values(postMeta)
+          .filter(({ title }) => !title.startsWith('_'))
+          .map(({postId, title, date}) => (
+            <Box key={postId}>
+              <Text fontSize='xl'>
+                <Link as={NextLink} href={`/weblog/${postId}`}>
+                  {title}
+                </Link>
+              </Text>
+              <Text fontSize='sm' colorScheme='gray'>
+                {formatDate(date)}
+              </Text>
+            </Box>
+          ))}
+      </VStack>
     </Layout>
   );
 }

@@ -60,13 +60,17 @@ export async function getPostData(id: string)  {
   return JSON.parse(JSON.stringify(mdxSource));
 };
 
+// TODO: re-implement this using graymatter since ther's no need to parse
+// the entire markdown file just to get the frontmatter
 export async function getSortedPostMeta() {
   const postIds = getPostIds();
   let postMeta = [];
 
   for (let { params: { id: postId }} of postIds) {
     const { frontmatter } = await getPostData(postId);
-    postMeta.push({ postId, ...frontmatter });
+
+    if(!postId.startsWith('_'))
+      postMeta.push({ postId, ...frontmatter });
   }
 
   return postMeta.sort((a, b) => a.date < b.date ? 1 : -1);

@@ -37,7 +37,7 @@ const Components: MDXComponents = {
   h5: (props) => <Heading size='sm'  {...headingStyle} {...props} />,
   h6: (props) => <Heading size='xs'  {...headingStyle} {...props} />,
   hr: (props) => <Hr {...props} />,
-  img: (props) => <Image borderRadius='lg' {...props} />,
+  img: (props) => <Image display='inline-block' borderRadius='lg' {...props} />,
   ol: (props) => <OrderedList {...listStyle} {...props} />,
   p:  (props) => <Paragraph {...props} />,
   ul: (props) => <UnorderedList {...listStyle} {...props} />,
