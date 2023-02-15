@@ -6,7 +6,11 @@ import {
   Text,
   Code,
   Divider,
+  LinkProps,
+  Link,
 } from '@chakra-ui/react';
+import { ExternalLinkIcon } from '@chakra-ui/icons';
+import { useRouter } from 'next/router';
 
 
 interface ProseProps extends ChakraProps {
@@ -40,6 +44,18 @@ export function Codeblock(props: ChakraProps) {
 export function Hr(props: ChakraProps) {
   return (
     <Divider mt={proseSpacing} mb={proseSpacing} {...props} />
+  );
+}
+
+export function Anchor(props: LinkProps) {
+  const {children, href, isExternal, ...rest} = props;
+  const isExternalUrl = href ? !href.startsWith('/') : false;
+
+  return (
+    <Link href={href} isExternal={isExternalUrl} {...rest}>
+      {children}
+      {isExternalUrl ? <>{' '}<ExternalLinkIcon /></> : '' }
+    </Link>
   );
 }
 
