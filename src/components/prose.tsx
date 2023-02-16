@@ -8,6 +8,7 @@ import {
   Divider,
   LinkProps,
   Link,
+  ImageProps,
 } from '@chakra-ui/react';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 
@@ -44,6 +45,18 @@ export function Hr(props: ChakraProps) {
   return (
     <Divider mt={proseSpacing} mb={proseSpacing} {...props} />
   );
+}
+
+export function Image(props: ImageProps) {
+    const {alt, ...rest} = props;
+    return (
+      <Image
+        alt={alt || ''}
+        display='inline-block'
+        borderRadius='lg'
+        {...rest}
+      />
+    );
 }
 
 export function Anchor(props: LinkProps) {
