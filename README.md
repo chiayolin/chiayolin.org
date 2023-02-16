@@ -17,10 +17,14 @@ yarn dev
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see
-the result.
+Open [http://localhost:3000](http://localhost:3000) to see the result.
 
 ## Contact
 
-Chiayo Lin <chiayo dot lin at gmail dot com>
+Chiayo Lin (chiayo dot lin at gmail dot com)
+
+## License
+
+Unless otherwise specified, the site is licensed under the
+[CC-BY-NA](https://creativecommons.org/licenses/by-nc/2.0/) license.
 
