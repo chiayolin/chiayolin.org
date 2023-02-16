@@ -9,6 +9,7 @@ import {
   LinkProps,
   Link,
   ImageProps,
+  Image as ChakraImage,
 } from '@chakra-ui/react';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 
@@ -50,7 +51,7 @@ export function Hr(props: ChakraProps) {
 export function Image(props: ImageProps) {
     const {alt, ...rest} = props;
     return (
-      <Image
+      <ChakraImage
         alt={alt || ''}
         display='inline-block'
         borderRadius='lg'

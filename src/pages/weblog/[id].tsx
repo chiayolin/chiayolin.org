@@ -1,4 +1,5 @@
 import { getPostData, getPostIds } from '@/lib/weblog';
+import { Image, Hr } from '@/components/prose';
 
 import Layout from '@/components/layout';
 import Balancer from 'react-wrap-balancer';
@@ -47,18 +48,36 @@ export default function Post({ mdxSource }: MDXSource) {
   return (
     <Layout>
       <Heading
-        mb='2'
+        mb='5'
         size='lg'
         fontWeight='normal'
         overflowWrap='break-word'
       >
         <Balancer>{frontmatter?.title}</Balancer>
       </Heading> 
-      <Box mb='8'>
+      {frontmatter?.cover ? 
+        <>
+          <Box overflow='hidden' maxH='60' borderRadius='lg' mb='2'>
+            <Image
+              alt={frontmatter?.caption}
+              src={frontmatter.cover}
+            />
+          </Box>
+          <Text
+            textAlign='center'
+            fontStyle='italic'
+          >
+            {frontmatter?.caption}
+          </Text>
+        </>
+        : ''}
+
+      <Box mt='5' mb='5'>
         <Text fontSize='sm'>
           {formatDate(frontmatter?.date)}
           {frontmatter?.location ? ` @ ${frontmatter?.location}` : ''}
         </Text>
+        <Hr />
       </Box>
       <MDXRemote
         {... {compiledSource}}

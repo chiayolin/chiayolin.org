@@ -4,8 +4,6 @@ import {
   UnorderedList,
   ListItem,
   OrderedList,
-  Link,
-  Image,
 } from '@chakra-ui/react';
 
 import {
@@ -13,6 +11,7 @@ import {
   Blockquote,
   Codeblock,
   Hr,
+  Image,
   Paragraph,
   Anchor,
 } from '@/components/prose';
