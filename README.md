@@ -25,6 +25,7 @@ Chiayo Lin (chiayo dot lin at gmail dot com)
 
 ## License
 
-Unless otherwise specified, the site is licensed under the
-[CC-BY-NA](https://creativecommons.org/licenses/by-nc/2.0/) license.
+This repository is licensed under the
+[CC-BY-NA](https://creativecommons.org/licenses/by-nc/2.0/) license, unless
+otherwise specified.
 
