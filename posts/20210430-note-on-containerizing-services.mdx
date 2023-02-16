@@ -16,6 +16,6 @@ I needed to deploy a Python service for an industrial visualization software at 
 
 Having a TTY attached is not necessary for the service in question, since its primary mode of communication is not via standard I/O. The only necessary output is the logging, which can be redirected to a file or syslog socket. For that reason, we can simply daemonize the process. However, simply running the service on top of the OS is not optimal nor scalable. This is because dependencies and environment settings are not guaranteed to remain consistent across different servers, which can lead to unexpected behavior or errors.
 
-This is where containers comes in. By containerizing the service, we can ensure that the dependencies and environment settings are consistent across all servers. This makes it easier to deploy the service and ensures that it will run consistently regardless of the underlying server infrastructure.
+This is where containers come in. By containerizing the service, we can ensure that the dependencies and environment settings are consistent across all servers. This makes it easier to deploy the service and ensures that it will run consistently regardless of the underlying server infrastructure.
 
 Overall, containerization is a powerful tool for deploying services. It ensures consistency and scalability while making it easier to manage and deploy services. I hope this note will be useful to me and anyone else who may be looking to containerize their services.
